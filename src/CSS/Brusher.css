@@ -68,3 +68,7 @@
 .handle {
   pointer-events: none;
 }
+
+.overlay {
+  pointer-events: none
+}

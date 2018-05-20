@@ -37,7 +37,7 @@ class Brusher extends Component {
       .selectAll('circle')
         .data(this.props.usersData)
         .enter().append('circle')
-          .attr('class', 'circle')
+          .attr('class', 'brushCircle')
           .attr('r', 3)
           .style('fill', 'grey')
           .attr('fill-opacity', 0.5)
@@ -54,7 +54,7 @@ class Brusher extends Component {
     // Checks the brush and changes color
     this.brush.on('brush', (d) => {
       let brushPosition = d3.select('.selection').attr('x')
-      let circlesSelector = document.querySelectorAll('.circle')
+      let circlesSelector = document.querySelectorAll('.brushCircle')
       circlesSelector.forEach(circle => {
         let eachCircleX = d3.select(circle).attr('cx')
         eachCircleX > brushPosition && eachCircleX < (Number(brushPosition) + 50)
@@ -66,7 +66,7 @@ class Brusher extends Component {
     this.brush.on('end', (d) => {
       let circleArray = []
       let brushPosition = d3.select('.selection').attr('x')
-      let circlesSelector = document.querySelectorAll('.circle')
+      let circlesSelector = document.querySelectorAll('.brushCircle')
       circlesSelector.forEach(circle => {
         let eachCircleX = d3.select(circle).attr('cx')
         if (eachCircleX > brushPosition && eachCircleX < (Number(brushPosition) + 50)) {
