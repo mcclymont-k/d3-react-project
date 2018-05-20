@@ -64,3 +64,8 @@
   height:400px;
   border: 1px solid orange
 }
+
+/* This is preventing the brusher from being resized */
+.handle {
+  pointer-events: none;
+}

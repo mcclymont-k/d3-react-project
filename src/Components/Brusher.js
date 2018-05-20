@@ -5,7 +5,6 @@ class Brusher extends Component {
   state = {
   }
   componentDidMount() {
-    console.log('started')
     this.brush=d3.brushX()
     let mainContainer = d3.select(this.refs.brushGraphContainer)
     mainContainer.append('line')
@@ -18,7 +17,7 @@ class Brusher extends Component {
     mainContainer.append('g')
       .attr('class', 'brush')
       .selectAll('circle')
-        .data(this.props.ageArray)
+        .data(this.props.usersData)
         .enter().append('circle')
           .attr('class', 'circle')
           .attr('r', 3)
