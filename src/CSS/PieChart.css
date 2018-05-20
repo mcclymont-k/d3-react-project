@@ -1,0 +1,28 @@
+.infoDiv1 {
+  align-self: flex-end;
+  font-size: 15px;
+  color: white;
+  z-index: 2;
+}
+
+.infoDiv2 {
+  align-self: flex-start;
+  font-size: 15px;
+  color: white;
+  z-index: 2;
+
+}
+
+.pieChartContainer {
+  position: relative;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-rows: 1fr 1fr;
+  width: 400px;
+  height: 400px;
+}
+
+.dataPieChart {
+  position: absolute;
+}
