@@ -3,16 +3,34 @@ import * as d3 from 'd3'
 import '../CSS/Brusher.css'
 class Brusher extends Component {
   state = {
+    months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct',
+  'Nov', 'Dec']
   }
   componentDidMount() {
     this.brush=d3.brushX()
     let mainContainer = d3.select(this.refs.brushGraphContainer)
     mainContainer.append('line')
-      .style('stroke', 'black')
+      .style('stroke', 'grey')
       .attr('x1', 0)
       .attr('y1', 200)
       .attr('x2', 600)
       .attr('y2', 200)
+
+    mainContainer.selectAll('text')
+      .data(this.state.months)
+      .enter().append('text')
+        .text( (d, i) => d)
+        .style('stroke', 'rgb(141, 141, 246)')
+        .style('font-size', '8px')
+        .attr('width', 50)
+        .attr('height', 10)
+        .attr('transform', (d, i) => 'translate( 5, ' + (i*17.75+104) + ')')
+
+    mainContainer.append('text')
+      .text('<-- Age -->')
+      .style('font-size', '8px')
+      .style('stroke', 'rgb(141, 141, 246)')
+      .attr('transform', 'translate(294.5, 330)')
 
     mainContainer.append('g')
       .attr('class', 'brush')
@@ -67,7 +85,6 @@ class Brusher extends Component {
       <div className='mainBrushContainer'>
         <svg height='400px' width="600px" ref='brushGraphContainer' className='brushGraphContainer'></svg>
         <div className='userDataInfoContainer'>
-          <div className='userDataInfoBoxTitle'>User data of those hovered on the graph</div>
           <div className='userDataInfoBoxes'>
         {
           this.state.circleArray

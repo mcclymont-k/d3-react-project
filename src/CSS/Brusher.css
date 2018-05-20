@@ -1,16 +1,16 @@
 :root {
-  --lightblue: #8181d5;
+  --lightblue: #4c4c9e;;
 }
 
 .mainBrushContainer {
   display: grid;
   align-items: center;
-  width: 90%;
   margin: auto;
   grid-template-columns: 1fr 1fr;
   max-width: 1200px;
   border: 1px solid orange;
-  height: 500px
+  height: 500px;
+  padding: 10px
 }
 
 .userDataInfoBox {
@@ -40,7 +40,6 @@
 .userDataInfoContainer {
   width: 100%;
   height: 100%;
-  grid-template-rows: 40px 1fr;
   display: grid;
   justify-items: center;
   align-items: center;

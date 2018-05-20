@@ -46,6 +46,7 @@ class ForceCircles extends Component {
         ? menColor(d.age)
         : womenColor(d.age)
       )
+      .attr('class', 'circle')
       .attr('opacity', 0.7)
       .attr('r', 10)
       .on('click', (d, i) => {

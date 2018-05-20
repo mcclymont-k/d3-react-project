@@ -17,3 +17,7 @@
 .forceCirclesContainer {
   position: relative
 }
+
+.circle:hover {
+  cursor: pointer
+}

@@ -1,0 +1,83 @@
+button {
+  cursor: pointer
+}
+hr {
+  width: 80%;
+  color: lightgrey;
+  margin: 20px auto;
+}
+
+.mainContainer {
+  display: grid;
+  grid-template-rows: repeat(3, 100vh);
+  justify-items: center;
+  grid-gap: 30px
+}
+
+.graphContainer {
+  display: grid;
+  grid-template-rows: 50px 50px auto;
+  width: 1000px;
+  justify-items: center;
+}
+
+.pieContainer {
+  background-color: black;
+  color: white;
+  display: grid;
+  align-items: center
+}
+
+.graphTitle {
+  display: grid;
+  align-items: center
+}
+
+.graphBlurb {
+  display: grid;
+  align-items: center;
+  font-size: 15px;
+}
+
+.scrollButtonContainer {
+  position: fixed;
+  display: grid;
+  grid-auto-flow: row;
+  margin: 20px;
+  grid-gap: 10px
+}
+
+.scrollButtonContainer button {
+  margin: none;
+  background-color: white;
+  border: 1px solid red;
+  padding: 5px;
+  border-radius: 3px;
+  transition: 0.3s
+}
+
+.scrollButtonContainer button:hover {
+  background-color: red;
+  color: white;
+}
+
+.forceTitle {
+  color: rgb(236, 43, 29)
+}
+
+.forceBlurb {
+  color: rgb(79, 107, 41)
+}
+
+.pieBlurb {
+  text-align: center
+}
+
+.brushTitle {
+  color: #e0a335
+}
+
+.brushBlurb {
+  color: #4c4c9e;
+  text-align: center
+}

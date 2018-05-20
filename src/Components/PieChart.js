@@ -27,6 +27,7 @@ class PieChart extends Component {
       .attr('transform', 'translate(200, 200)')
     g.append('path')
       .attr('d', arc)
+      .attr('class', 'path')
       .attr('transform', 'scale(0.1)')
       .style('fill', (d, i) =>
         d.data.gender === 'male'
@@ -42,17 +43,14 @@ class PieChart extends Component {
           .style('left','200px')
           .style('top', '240px')
           .text(() => 'Age: ' + targetData.age)
-        target.transition().attr('transform', 'scale(1.05)').attr('stroke', 'black')
+        target.transition().attr('transform', 'scale(1.05)').attr('stroke', 'white')
       })
       .on('mouseout', (d, i) => {
         let target = d3.select(d3.event.target)
         target.transition().attr('transform', 'scale(1)').attr('stroke', '')
         infoDiv1.transition().style('opacity', 0)
         infoDiv2.transition().style('opacity', 0)
-
       })
-
-
     let allPaths = d3.selectAll('path')
       .transition()
       .attr('transform', 'scale(1)')
