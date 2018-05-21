@@ -4,38 +4,41 @@ import '../CSS/Brusher.css'
 class Brusher extends Component {
   state = {
     months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct',
-  'Nov', 'Dec']
+  'Nov', 'Dec'],
+    users: this.props.usersData
   }
+
   componentDidMount() {
     this.brush=d3.brushX()
     let mainContainer = d3.select(this.refs.brushGraphContainer)
+    let textBlue = 'rgb(141, 141, 246)'
     mainContainer.append('line')
       .style('stroke', 'grey')
       .attr('x1', 0)
       .attr('y1', 200)
       .attr('x2', 600)
       .attr('y2', 200)
-
+    // Y axis
     mainContainer.selectAll('text')
       .data(this.state.months)
       .enter().append('text')
         .text( (d, i) => d)
-        .style('stroke', 'rgb(141, 141, 246)')
+        .style('stroke', textBlue)
         .style('font-size', '8px')
         .attr('width', 50)
         .attr('height', 10)
         .attr('transform', (d, i) => 'translate( 5, ' + (i*17.75+104) + ')')
-
+    // X axis title
     mainContainer.append('text')
       .text('<-- Age -->')
       .style('font-size', '8px')
-      .style('stroke', 'rgb(141, 141, 246)')
+      .style('stroke', textBlue)
       .attr('transform', 'translate(294.5, 330)')
-
+    // Circle creator
     mainContainer.append('g')
       .attr('class', 'brush')
       .selectAll('circle')
-        .data(this.props.usersData)
+        .data(this.state.users)
         .enter().append('circle')
           .attr('class', 'brushCircle')
           .attr('r', 3)
@@ -46,11 +49,10 @@ class Brusher extends Component {
     this.createBrush()
   }
 
-
   createBrush() {
     let brushContainer = d3.select('.brush')
     brushContainer.call(this.brush.extent([[0,94], [600, 306]]))
-    this.brush.move(brushContainer, [1,50])
+    this.brush.move(brushContainer, [0,50])
     // Checks the brush and changes color
     this.brush.on('brush', (d) => {
       let brushPosition = d3.select('.selection').attr('x')
@@ -62,7 +64,7 @@ class Brusher extends Component {
         : d3.select(circle).style('fill', 'grey')
       })
     })
-    // Checks the brush and refers data to info box
+    // Checks for brush end and returns highlighted data
     this.brush.on('end', (d) => {
       let circleArray = []
       let brushPosition = d3.select('.selection').attr('x')
@@ -88,15 +90,15 @@ class Brusher extends Component {
           <div className='userDataInfoBoxes'>
         {
           this.state.circleArray
-          ? this.state.circleArray.map((circle) =>
-            <div className='userDataInfoBox'>
+          ? this.state.circleArray.map((circle, i) =>
+            <div className='userDataInfoBox' key={i}>
               <h1>Name: <span className='userInfo'>{circle[0].usersName}</span></h1>
               <h1>Date of birth: <span className='userInfo'>{circle[0].dob}</span></h1>
               <h1>Age: <span className='userInfo'>{circle[0].age} years old</span></h1>
             </div>)
           : []
         }
-        </div>
+          </div>
         </div>
       </div>
     )

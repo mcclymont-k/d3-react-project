@@ -4,6 +4,10 @@ import '../CSS/PieChart.css'
 
 class PieChart extends Component {
 
+  state = {
+    users: this.props.usersData
+  }
+
   componentDidMount() {
     this.mainContainer = d3.select(this.refs.dataPieChart)
     let menColor = d3.scaleLinear()
@@ -13,7 +17,7 @@ class PieChart extends Component {
       .domain([20, 70])
       .range(['rgb(178, 27, 194)', 'rgb(255, 155, 252)'])
     let arc =d3.arc().outerRadius(150).innerRadius(100)
-    let pie = d3.pie().value(d => d.age).sort(null )(this.props.usersData)
+    let pie = d3.pie().value(d => d.age).sort(null )(this.state.users)
     let background = this.mainContainer.append('rect')
     .attr('width', '400px')
     .attr('height', '400px')
@@ -29,6 +33,7 @@ class PieChart extends Component {
       .attr('d', arc)
       .attr('class', 'path')
       .attr('transform', 'scale(0.1)')
+    // Checks for gender and then fills based on gender and age
       .style('fill', (d, i) =>
         d.data.gender === 'male'
         ? menColor(d.data.age)
@@ -51,6 +56,7 @@ class PieChart extends Component {
         infoDiv1.transition().style('opacity', 0)
         infoDiv2.transition().style('opacity', 0)
       })
+    // Animates the pie on page load
     let allPaths = d3.selectAll('path')
       .transition()
       .attr('transform', 'scale(1)')

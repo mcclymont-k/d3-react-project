@@ -21,6 +21,7 @@ class Home extends Component {
           let dob = user.dob.substring(0,10)
           let month = Number(dob.substring(5, 7))
           let age = 2018 - Number(dob.substring(0,4))
+        // Checks if they have had a birthday this year
           month < 5 ? age +=1 : ''
           dob = dob.split('-').reverse().join('-')
           let firstName = user.name.first.charAt(0).toUpperCase() + user.name.first.slice(1)
@@ -28,7 +29,6 @@ class Home extends Component {
           let usersName = firstName + ' ' + lastName
           usersData.push({age, month, usersName, dob, gender})
         })
-        // Get
         this.setState({usersData: usersData})
       })
       .catch(error => console.log(error))

@@ -7,6 +7,7 @@ let simulation = d3.forceSimulation()
   .force('charge', d3.forceManyBody().strength(5))
   .force('collide', d3.forceCollide(10))
   .stop()
+
 let menColor = d3.scaleLinear()
   .domain([20, 80])
   .range([ 'rgb(178, 230, 105)', 'rgb(49, 69, 21)'])
@@ -49,9 +50,11 @@ class ForceCircles extends Component {
       .attr('class', 'circle')
       .attr('opacity', 0.7)
       .attr('r', 10)
+      // Onclick event on circle
       .on('click', (d, i) => {
         let selectionData = d3.select(d3.event.target).data()
         let target = d3.select(d3.event.target)
+        // Reduces circle size on click
         if (d3.select(d3.event.target).attr('r') == 30) {
           d3.select('.infoDiv').style('opacity', 0)
           simulation.force('charge', d3.forceManyBody().strength(10))
@@ -61,6 +64,7 @@ class ForceCircles extends Component {
         target.attr('r', 10)
         circleClicked = false
         } else {
+        // Checks if a circle is already clicked and either expands or does nothing
           circleClicked
           ? []
           : (
@@ -74,11 +78,11 @@ class ForceCircles extends Component {
                   d3.select(circle)
                     .attr('r', 10)),
               target.attr('r', 30),
-              console.log(target.data()),
               document.querySelector('.infoDiv').innerHTML = target.data()[0].usersName + '</br>Age: ' + target.data()[0].age,
               circleClicked = true
             )
           }
+          // Listens for end and supplies location for the infoDiv
           simulation.on('end', () => {
             d3.select('.infoDiv')
               .style('left', `${Number(target.attr('cx')) - 30}px`)

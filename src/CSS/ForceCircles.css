@@ -15,7 +15,8 @@
 }
 
 .forceCirclesContainer {
-  position: relative
+  position: relative;
+  margin: auto
 }
 
 .circle:hover {

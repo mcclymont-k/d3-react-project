@@ -35,7 +35,6 @@ hr {
 
 .graphBlurb {
   display: grid;
-  align-items: center;
   font-size: 15px;
 }
 
@@ -79,5 +78,6 @@ hr {
 
 .brushBlurb {
   color: #4c4c9e;
-  text-align: center
+  text-align: center;
+  align-self: flex-start;
 }
