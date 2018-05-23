@@ -63,7 +63,7 @@ class Home extends Component {
                   The pie chart is demonstrating each of the 100 users as a slice
                   of the chart. Men are colored blue and women are colored pink.
                   Age is represented by size of pie slice and by depth of color
-                  with darker color and larger pie slice indicating older age.
+                  with lighter color and larger pie slice indicating older age.
                   Hovering over any slice returns the information about that user
                 </div>
                 <PieChart usersData={this.state.usersData}/>
