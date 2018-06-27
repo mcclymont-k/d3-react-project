@@ -18,7 +18,7 @@ class Home extends Component {
         // Get age
         randomUserData.forEach(user => {
           let gender = user.gender
-          let dob = user.dob.substring(0,10)
+          let dob = user.dob.date.substring(0,10)
           let month = Number(dob.substring(5, 7))
           let age = 2018 - Number(dob.substring(0,4))
         // Checks if they have had a birthday this year
